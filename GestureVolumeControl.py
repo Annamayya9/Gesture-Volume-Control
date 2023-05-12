@@ -51,8 +51,10 @@ while True:
             # print(length)
 
             # Convert Volume
+            vol = np.interp(length, [50, 200], [minVol, maxVol])
             volBar = np.interp(length, [50, 200], [400, 150])
             volPer = np.interp(length, [50, 200], [0, 100])
+            volume.SetMasterVolumeLevel(vol, None)
 
             # Reduce Resolution to make it smoother
             smoothness = 10
@@ -71,11 +73,11 @@ while True:
                 colorVol = (255, 0, 0)
 
     # Drawings
+    cVol = int(volume.GetMasterVolumeLevelScalar() * 100)
     cv2.rectangle(img, (50, 150), (85, 400), (255, 0, 0), 3)
     cv2.rectangle(img, (50, int(volBar)), (85, 400), (255, 0, 0), cv2.FILLED)
-    cv2.putText(img, f'{int(volPer)} %', (40, 450), cv2.FONT_HERSHEY_COMPLEX,
+    cv2.putText(img, f'{int(cVol)} %', (40, 450), cv2.FONT_HERSHEY_COMPLEX,
                 1, (255, 0, 0), 3)
-    cVol = int(volume.GetMasterVolumeLevelScalar() * 100)
     cv2.putText(img, f'Vol Set: {int(cVol)}', (400, 50), cv2.FONT_HERSHEY_COMPLEX,
                 1, colorVol, 3)
 
