@@ -1,5 +1,7 @@
 # Gesture-Volume-Control
 A hand-tracking model that helps us to manipulate the device's volume with gestures.
+It uses MediaPipe and OpenCV libraries for hand tracking and
+the pycaw library to access the audio functions on the device
 ## Required libraries
 
 1. numpy
